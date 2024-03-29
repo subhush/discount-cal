@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discount Calculator</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Animate.css for animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-image: url(Calculator\ Background.jpeg);
+      background-size: cover;
+      background-repeat: no-repeat;  
+    }
+
+    h2 {
+      color: aquamarine;
+      -webkit-text-stroke-width: 1.5px;
+      -webkit-text-stroke-color: black;
+      text-shadow: 2px 2px 0px black;
+    }
+
+    .container {
+     background-color: rgba(137, 207, 240, 0.7);
+      margin-top: 50px;
+      border: 1px solid black;
+      border-radius: 10px;
+      box-shadow: 2px 2px 2px white, 2px 2px 2px white;
+      padding: 20px;
+    }
+
+    .form-group label {
+      color: black;
+      font-size: 1.5rem;
+    }
+
+    .form-control {
+        background-color: rgba(137, 207, 240, 0.7);
+      border: 1px solid black;
+    }
+
+    #discountedPrice {
+      animation: fadeInUp 1s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="container animate__animated animate__bounceIn">
+    <h2 class="text-center">Discount Calculator</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="originalPrice">Original Price:</label>
+          <input type="number" class="form-control" id="originalPrice" placeholder="Enter original price">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="discount">Discount (%):</label>
+          <input type="number" class="form-control" id="discount" placeholder="Enter discount percentage">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button type="button" class="btn btn-primary btn-block mt-5" onclick="calculateDiscount()">Calculate Discount</button>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-12">
+        <h4 class="text-center">Price after Discount: <span id="discountedPrice"></span></h4>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.3/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+  <!-- Animate.css -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.js"></script>
+
+  <script>
+    function calculateDiscount() {
+      var originalPrice = parseFloat(document.getElementById('originalPrice').value);
+      var discount = parseFloat(document.getElementById('discount').value);
+
+      if (isNaN(originalPrice) || isNaN(discount)) {
+        alert("Please enter valid numbers for Original Price and Discount.");
+        return;
+      }
+
+      if (discount < 0 || discount > 100) {
+        alert("Discount should be between 0 and 100.");
+        return;
+      }
+
+      var discountedPrice = originalPrice - (originalPrice * (discount / 100));
+      document.getElementById('discountedPrice').innerText = "Rs " + discountedPrice.toFixed(2);
+    }
+  </script>
+</body>
+</html>
